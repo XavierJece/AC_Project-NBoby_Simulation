@@ -90,7 +90,7 @@ void validateSystem(){
 }
 
 //////////////////////////////////////////////////////////////////////// 
-void computeAccelerations(){
+void computeAccelerations(){ // PARALELIZAVEL
 	int i,j;
  
 	for(i=0;i<GLOBAL_numBodies;i++){
