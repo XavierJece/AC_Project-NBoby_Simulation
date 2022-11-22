@@ -144,6 +144,13 @@ void simulate(){
 	validateSystem();
 }
 
+void freeAll(){
+	free(GLOBAL_masses);
+	free(GLOBAL_positions);
+	free(GLOBAL_velocities);
+	free(GLOBAL_accelerations);
+}
+
 ////////////////////////////////////////////////////////////////////////
 int main(int argC,char* argV[])
 {
@@ -179,6 +186,8 @@ int main(int argC,char* argV[])
 
 	// dump final result
 	showSystem();
+
+	freeAll();
 		
 	return 0;
 }
