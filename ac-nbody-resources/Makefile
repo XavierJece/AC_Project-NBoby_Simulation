@@ -11,7 +11,7 @@ CFLAGS=-Wall -O2
 
 #use the 1st line in alternative to the 2nd (use 2nd only if SDL bgi installed)
 #all: nbody-serial.exe nbody-threads.exe 
-all: nbody-serial.exe nbody-serial-opt.exe nbody-threads.exe  nbody-serial-gui.exe
+all: nbody-serial.exe nbody-serial-opt.exe nbody-threads.exe  nbody-serial-gui.exe nbody-serial-opt-gui.exe
 
 nbody-serial.exe: nbody-serial.c
 	$(CC) $(CFLAGS) nbody-serial.c $(MFLAGS) -o nbody-serial.exe
@@ -25,6 +25,9 @@ nbody-threads.exe: nbody-threads.c
 #uncomment the following two lines only if SDL bgi is installed
 nbody-serial-gui.exe: nbody-serial-gui.c
 	$(CC) $(CFLAGS) nbody-serial-gui.c $(MFLAGS) $(GFLAGS) -o nbody-serial-gui.exe
+
+nbody-serial-opt-gui.exe: nbody-serial-opt-gui.c
+	$(CC) $(CFLAGS) nbody-serial-opt-gui.c $(MFLAGS) $(GFLAGS) -o nbody-serial-opt-gui.exe
 
 clean:
 	rm -f *.exe *.o a.out
