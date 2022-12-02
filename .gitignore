@@ -1,1 +1,6 @@
+
+# Remove excutable files
 **/*.exe
+
+# Remove logs files
+nbody-serial-300-30000.txt
