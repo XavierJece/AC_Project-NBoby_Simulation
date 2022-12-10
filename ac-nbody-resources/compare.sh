@@ -25,6 +25,18 @@ function teste
 	python3 media.py
 }
 
+function tempo-opt
+{
+				echo "Time Serial Original:"
+        time ./nbody-serial.exe $1 $2 2> $result_folder/nbody-serial-$1-$2.txt ; 
+        
+				echo "Time Serial OPT: "
+				time ./nbody-serial-opt.exe $1 $2 $3 2> $result_folder/nbody-serial-opt-$1-$2.txt ;
+
+				echo Diferencas encontradas entre as saidas finais:
+        diff $result_folder/nbody-serial-$1-$2.txt $result_folder/nbody-serial-opt-$1-$2.txt
+}
+
 # $1 -> nome da funcao
 # $2 -> nbody
 # $3 -> nsteps

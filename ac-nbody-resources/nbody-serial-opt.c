@@ -103,25 +103,28 @@ void validateSystem()
 
 ////////////////////////////////////////////////////////////////////////
 void computeAccelerations()
-{ // PARALELIZAVEL
+{
 	int i, j;
+
+	double *masses = GLOBAL_masses;
+	vector *positions = GLOBAL_positions;
+	vector *accelerations = GLOBAL_accelerations;
 
 	for (i = 0; i < GLOBAL_numBodies; i++)
 	{
-		GLOBAL_accelerations[i].x = 0;
-		GLOBAL_accelerations[i].y = 0;
-		GLOBAL_accelerations[i].z = 0;
+		accelerations[i].x = 0;
+		accelerations[i].y = 0;
+		accelerations[i].z = 0;
 		for (j = 0; j < GLOBAL_numBodies; j++)
 		{
 			if (i != j)
 			{
-				GLOBAL_accelerations[i] = addVectors(GLOBAL_accelerations[i], scaleVector(CONST_GravConstant * GLOBAL_masses[j] / pow(mod(subtractVectors(GLOBAL_positions[i], GLOBAL_positions[j])), 3), subtractVectors(GLOBAL_positions[j], GLOBAL_positions[i])));
+				accelerations[i] = addVectors(accelerations[i], scaleVector(CONST_GravConstant * masses[j] / pow(mod(subtractVectors(positions[i], positions[j])), 3), subtractVectors(positions[j], positions[i])));
 			}
 		}
-
-		GLOBAL_positions[i] = addVectors(GLOBAL_positions[i], addVectors(GLOBAL_velocities[i], scaleVector(0.5, GLOBAL_accelerations[i])));
-		GLOBAL_velocities[i] = addVectors(GLOBAL_velocities[i], GLOBAL_accelerations[i]);
 	}
+
+	GLOBAL_accelerations = accelerations;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -163,8 +166,8 @@ void resolveCollisions()
 void simulate()
 {
 	computeAccelerations();
-	// computePositions();
-	// computeVelocities();
+	computePositions();
+	computeVelocities();
 	resolveCollisions();
 	validateSystem();
 }
