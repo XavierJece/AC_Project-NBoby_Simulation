@@ -6,8 +6,8 @@ TFLAGS=-pthread
 GFLAGS=-lSDL_bgi -lSDL2
 
 #use the 1st line in alternative to the 2nd (1st is for valgrind, 2nd is for benchmarking)
-CFLAGS=-Wall -O0 -g
-#CFLAGS=-Wall -O2
+#CFLAGS=-Wall -O0 -g
+CFLAGS=-Wall -O2
 
 #use the 1st line in alternative to the 2nd (use 2nd only if SDL bgi installed)
 #all: nbody-serial.exe nbody-threads.exe 

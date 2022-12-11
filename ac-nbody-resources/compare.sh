@@ -20,12 +20,14 @@ nsteps=$4
 
 function comporate_logs
 {
-	DIFF=$(diff $result_folder/nbody-serial-$nbody_string-$nsteps_string.txt $result_folder/nbody-$algorithm-$nbody_string-$nsteps_string.txt)
+	[[ $2 = "" ]] && nameFile="$algorithm" || nameFile="$2_$algorithm";
+
+	DIFF=$(diff $result_folder/nbody-serial-$nbody_string-$nsteps_string.txt $result_folder/nbody-$nameFile-$nbody_string-$nsteps_string.txt)
 	if [ "$DIFF" == "" ]; then
 		echo "   Analisando Logs: NÃO HOUVE DIFERENÇA" 
 	else
-		echo $DIFF > $result_folder/diff-$numTest\_serial-opt.txt ;
-		echo "   Analisando Logs: HOUVE DIFERENÇA, veja o arquivo: $result_folder/diff-$1\_serial-opt.txt" 
+		echo $DIFF >  $result_folder/diff_$1-$nameFile.txt ;
+		echo "   Analisando Logs: HOUVE DIFERENÇA, veja o arquivo: $result_folder/diff_$1-$nameFile.txt" 
 	fi
 }
 
@@ -70,6 +72,7 @@ else
 
 	echo ""
 	echo "4. INICIANDO TESTES CODIGO >>>>>>>> ORIGINAL <<<<<<<< (Rodará $qtdTests vezes):"
+
 	for numTest in $(eval echo "{1..$qtdTests}") ; do
 		echo " Rodando o teste de número $numTest..."
 		{ time ./nbody-serial.exe $nbody $nsteps 2> $result_folder/nbody-serial-$nbody_string-$nsteps_string.txt ; } 2>> $result_folder/time_original-$nbody_string-$nsteps_string.txt ;
@@ -98,9 +101,9 @@ else
 					for numTest in $(eval echo "{1..$qtdTests}") ; do
 			
 						echo "  Rodando o teste de número $numTest..."
-						{ time ./nbody-$algorithm.exe $nbody $nsteps 2> $result_folder/nbody-$algorithm-$nbody_string-$nsteps_string.txt ; } 2>> $result_folder/time_$thread\_$algorithm-$nbody_string-$nsteps_string.txt ;
+						{ time ./nbody-$algorithm.exe $nbody $nsteps $thread 2> $result_folder/nbody-$thread\_$algorithm-$nbody_string-$nsteps_string.txt ; } 2>> $result_folder/time_$thread\_$algorithm-$nbody_string-$nsteps_string.txt ;
 						
-						comporate_logs $numTest
+						comporate_logs $numTest $thread
 
 					done
 		done
