@@ -15,7 +15,7 @@ nbody=$3
 
 
 nsteps=$4
-[[ $3 = "" ]] && nsteps_string="default" || nsteps_string=$3 ;
+[[ $4 = "" ]] && nsteps_string="default" || nsteps_string=$4 ;
 #----------------------------------------------------------------
 
 function comporate_logs
