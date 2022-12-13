@@ -21,5 +21,6 @@ Project for the course of Advanced Computing from Instituto Politecnico de Braga
 - Open file callgrind.out. ...
 
 6 - Run test
+ - Run command `cd ac-nbody-resources/`
  - Run command `./compare.sh -h` 
 
