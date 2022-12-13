@@ -18,6 +18,8 @@ Project for the course of Advanced Computing from Instituto Politecnico de Braga
 
 5 - See hotspots
 - Open program Kcachegrind
-- Open file callgrind.out.25755
-- Select calle map
+- Open file callgrind.out. ...
+
+6 - Run test
+ - Run command `./compare.sh -h` 
 
